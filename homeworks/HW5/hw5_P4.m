@@ -23,7 +23,9 @@ clear x
 % ERROR STRUCT INITIATION
 
 % equispaced composite trapezoid
-err.compTrap = [];
+err.compTrap1 = [];
+% equispaced for delta/2
+err.compTrap2 = [];
 % richardson extrapolation
 err.RichExtrap = [];
 
@@ -60,9 +62,9 @@ disp("Uniform Composite Trapezoid = " + num2str(err.compTrap1));
 % for loop to iterate through nvect
 for i = 1:length(nvect)
     % assign a variable the n
-    ni = nvect(i);
+    ni = 2*nvect(i);
     % create the uniformly spaced points
-    intpoints = interp_Maker(endp,2*ni,'eq');
+    intpoints = interp_Maker(endp,ni,'eq');
     % find delta, should be equal everywhere so use first two points
     delta = (intpoints(2)-intpoints(1));
     % assign the first value to comp trap, f(x0)
@@ -76,14 +78,14 @@ for i = 1:length(nvect)
     % assign the error
     err.compTrap2(i) = norm(int_appx-int_exact);
 end
-err.RichExtrap = (4/3)*err.compTrap2-(1/3)*err.compTrap1;
+err.RichExtrap = abs((4/3)*err.compTrap2-(1/3)*err.compTrap1);
 % display the final errors found
 disp("Richardson Extrapolation = " + num2str(err.RichExtrap));
 %% Plotting A, B, C
-semilogy(nvect,err.compTrap,'r.',...
+semilogy(nvect,err.compTrap1,'r.',...
     nvect,err.RichExtrap,'b.',...
     'markersize',26);
-h = legend('Equispaced Lagrange Interpolant',...
+h = legend('Regular Composite Trapezoids',...
     'Richardson Extrapolation');
 set( h, 'location', 'NorthEast', 'interpreter', 'latex', 'fontsize', 10)
 xlabel( 'n', 'interpreter', 'latex', 'fontsize', 12)

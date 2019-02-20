@@ -76,7 +76,7 @@ for i = 1:length(nvect)
     % add the last part f(xn) and multiply through the .5 and delta
     int_appx = .5*delta*(comptrap + fcn(intpoints(length(intpoints))));
     % assign the error
-    err.compTrap2(i) = norm(int_appx-int_exact);
+    err.compTrap2(i) = abs(int_appx-int_exact);
 end
 err.RichExtrap = abs((4/3)*err.compTrap2-(1/3)*err.compTrap1);
 % display the final errors found

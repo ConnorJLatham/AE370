@@ -1,5 +1,5 @@
 %% AE370 Homework 5 Feb. 17, 2019
-%% Problem 2
+%% Problem 3
 clear all, close all, clc
 
 % SETUP

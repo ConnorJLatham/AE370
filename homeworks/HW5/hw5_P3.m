@@ -28,7 +28,7 @@ err = [];
 %% Part A
 
 % SETUP
-
+tic
 % for loop to iterate through nvect
 for i = 1:length(nvect)
     % assign a variable the n
@@ -48,10 +48,11 @@ for i = 1:length(nvect)
     % assign the error
     err(i) = norm(int_appx-int_exact);
 end
+toc
 % display the final errors found
 disp("Uniform Composite Trapezoid = " + num2str(err));
 
-%% Plotting A, B, C
+%% Plotting A
 semilogy(nvect,err,'r.',...
     'markersize',26);
 h = legend('Equispaced Lagrange Interpolant',...

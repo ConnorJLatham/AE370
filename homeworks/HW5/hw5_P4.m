@@ -34,6 +34,7 @@ err.RichExtrap = [];
 % SETUP
 
 % for loop to iterate through nvect
+tic
 for i = 1:length(nvect)
     % assign a variable the n
     ni = nvect(i);
@@ -52,13 +53,14 @@ for i = 1:length(nvect)
     % assign the error
     err.compTrap1(i) = norm(int_appx-int_exact);
 end
+toc
 % display the final errors found
 disp("Uniform Composite Trapezoid = " + num2str(err.compTrap1));
 
 %% Part B
 
 % SETUP
-
+tic
 % for loop to iterate through nvect
 for i = 1:length(nvect)
     % assign a variable the n
@@ -78,10 +80,11 @@ for i = 1:length(nvect)
     % assign the error
     err.compTrap2(i) = abs(int_appx-int_exact);
 end
+toc
 err.RichExtrap = abs((4/3)*err.compTrap2-(1/3)*err.compTrap1);
 % display the final errors found
 disp("Richardson Extrapolation = " + num2str(err.RichExtrap));
-%% Plotting A, B, C
+%% Plotting A, B
 semilogy(nvect,err.compTrap1,'r.',...
     nvect,err.RichExtrap,'b.',...
     'markersize',26);

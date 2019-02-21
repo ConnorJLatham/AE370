@@ -32,7 +32,7 @@ err.comTrap = [];
 %% Part A
 
 % SETUP
-
+tic
 % create a symbolic x
 syms x
 % set up a for loop to go through nvect
@@ -56,6 +56,7 @@ for i = 1:length(nvect)
     % find the error between the appx and the exact answer
     err.eqLag(i) = norm(int_appx-int_exact);
 end
+toc
 disp("Equispaced Lagrange = " + num2str(err.eqLag))
 % clear the symbolic just in case
 clear x i func int_appx intPoints intVals ni
@@ -63,7 +64,7 @@ clear x i func int_appx intPoints intVals ni
 %% Part B 
 
 % SETUP
-
+tic
 % declare a symbolic x for integrating
 syms x
 % set up a for loop to go through nvect
@@ -87,6 +88,7 @@ for i = 1:length(nvect)
     % find the error between the appx and the exact answer
     err.chebLag(i) = norm(int_appx-int_exact);
 end
+toc
 disp("Chebspaced Lagrange = " + num2str(err.chebLag))
 % clear the symbolic just in case
 clear x i func int_appx intPoints intVals ni
@@ -94,7 +96,7 @@ clear x i func int_appx intPoints intVals ni
 %% Part C
 
 % SETUP
-
+tic
 % for loop to iterate through nvect
 for i = 1:length(nvect)
     % assign a variable the n
@@ -114,6 +116,7 @@ for i = 1:length(nvect)
     % assign the error
     err.comTrap(i) = norm(int_appx-int_exact);
 end
+toc
 % display the final errors found
 disp("Uniform Composite Trapezoid = " + num2str(err.comTrap));
 
